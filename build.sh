@@ -110,17 +110,22 @@ if [ ! -f grpc/bin/grpc_cpp_plugin ] || [ ! -f grpc/lib/libgrpc.a ] ||
 
     cd grpc-jeremy
 
-    #workaround: git clone https://boringssl.googlesource.com/boringssl not work
-    mkdir -p third_party
-    cd third_party
-    if [ ! -d boringssl-with-bazel ]; then
-        git clone https://github.com/jeremywangjun/boringssl.git boringssl-with-bazel
+    #git submodule update --init 1>&2
+    if git submodule update --init; then
+        echo ""
     else
-        git pull origin master:boringssl-with-bazel
+        #workaround: git clone https://boringssl.googlesource.com/boringssl not work
+        echo "workaround: git clone https://boringssl.googlesource.com/boringssl boringssl-with-bazel"
+        cd third_party
+        if [ ! -d boringssl-with-bazel ]; then
+            git clone https://github.com/jeremywangjun/boringssl.git boringssl-with-bazel
+        else
+            git pull origin master:boringssl-with-bazel
+        fi
+        #contiue git clone other dependencies
+        git submodule update --init
+        cd ../
     fi
-    cd ../
-
-    git submodule update --init
 
     make -j2
     mkdir -p ../grpc/lib
@@ -147,6 +152,9 @@ make
 cd plugin
 make
 cd ../
+
+rm -f lib
+ln -s `pwd`/.lib/extlib lib
 
 cd sample
 make
