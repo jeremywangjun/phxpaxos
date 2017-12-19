@@ -9,7 +9,7 @@ NANOPBPATH=$(SRC_BASE_PATH)/third_party/nanopb/
 PROTOBUF_INCLUDE_PATH=$(SRC_BASE_PATH)/third_party/protobuf/include/
 GRPC_INCLUDE_PATH=$(SRC_BASE_PATH)/third_party/grpc/include 
 LEVELDB_INCLUDE_PATH=$(SRC_BASE_PATH)/third_party/leveldb/include/
-GLOG_INCLUDE_PATH=$(SRC_BASE_PATH)/third_party/glog/src/
+GLOG_INCLUDE_PATH=$(SRC_BASE_PATH)/third_party/glog/include/
 PHXPAXOS_INCLUDE_PATH=$(SRC_BASE_PATH)/include
 PHXPAXOS_PLUGIN_PATH=$(SRC_BASE_PATH)/plugin/include
 
