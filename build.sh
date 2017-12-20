@@ -29,7 +29,7 @@ if [ ! -f leveldb/lib/libleveldb.a ]; then
 	fi
 
 	cd leveldb-jeremy
-	make -j2
+	make
 
     mkdir -p ../leveldb/lib
 	rm -f ../leveldb/lib/libleveldb.a
